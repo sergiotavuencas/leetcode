@@ -3,6 +3,7 @@ import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 from utils.performance import Performance
+from utils.test_cases import large_array_with_duplicates
 
 class BruteSolution(object):
     def containsDuplicate(self, nums):
@@ -38,9 +39,9 @@ class HashSetLengthSolution(object):
     def containsDuplicate(self, nums):
         return len(nums) != len(set(nums))
 
-array = [1, 2, 3, 1]
+array = large_array_with_duplicates
 
-Performance.measure(BruteSolution().containsDuplicate, array)
-Performance.measure(SortingSolution().containsDuplicate, array)
-Performance.measure(HashSetSolution().containsDuplicate, array)
-Performance.measure(HashSetLengthSolution().containsDuplicate, array)
+Performance.measure(BruteSolution().containsDuplicate, array, timeout=2)
+Performance.measure(SortingSolution().containsDuplicate, array, timeout=2)
+Performance.measure(HashSetSolution().containsDuplicate, array, timeout=2)
+Performance.measure(HashSetLengthSolution().containsDuplicate, array, timeout=2)
